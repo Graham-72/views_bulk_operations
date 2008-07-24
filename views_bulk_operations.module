@@ -255,3 +255,110 @@ function views_bulk_operations_delete_nodes($nodes) {
   }
 }
 
+function views_bulk_operations_views_default_views() {
+  $view = new view;
+  $view->name = 'admin_content';
+  $view->description = 'View, edit and delete your site\'s content.';
+  $view->tag = '';
+  $view->view_php = '';
+  $view->base_table = 'node';
+  $view->is_cacheable = FALSE;
+  $view->api_version = 2;
+  $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
+  $handler = $view->new_display('default', 'Defaults', 'default');
+  $handler->override_option('fields', array(
+    'title' => array(
+      'label' => 'Title',
+      'link_to_node' => 1,
+      'exclude' => 0,
+      'id' => 'title',
+      'table' => 'node',
+      'field' => 'title',
+      'relationship' => 'none',
+      'override' => array(
+        'button' => 'Override',
+      ),
+    ),
+    'type' => array(
+      'label' => 'Type',
+      'link_to_node' => 0,
+      'exclude' => 0,
+      'id' => 'type',
+      'table' => 'node',
+      'field' => 'type',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+    'name' => array(
+      'label' => 'Author',
+      'link_to_user' => 1,
+      'exclude' => 0,
+      'id' => 'name',
+      'table' => 'users',
+      'field' => 'name',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+    'status' => array(
+      'label' => 'Published',
+      'type' => 'yes-no',
+      'not' => 0,
+      'exclude' => 0,
+      'id' => 'status',
+      'table' => 'node',
+      'field' => 'status',
+      'override' => array(
+        'button' => 'Override',
+      ),
+      'relationship' => 'none',
+    ),
+    'edit_node' => array(
+      'id' => 'edit_node',
+      'table' => 'node',
+      'field' => 'edit_node',
+    ),
+  ));
+  $handler->override_option('access', array(
+    'type' => 'none',
+    'role' => array(),
+    'perm' => '',
+  ));
+  $handler->override_option('title', 'Content');
+  $handler->override_option('items_per_page', 0);
+  $handler->override_option('style_plugin', 'bulk');
+  $handler->override_option('style_options', array(
+    'selected_operations' => array(
+      '867e6bb83ef13a39c914e114fab4d6f2' => '867e6bb83ef13a39c914e114fab4d6f2',
+      'c6d3850086dc3c1bca4bf0625ce78c56' => 'c6d3850086dc3c1bca4bf0625ce78c56',
+      '548749a939aa6334157edff3d8f69351' => '548749a939aa6334157edff3d8f69351',
+      '6a99179e9c90e9edfb34d075fa234d78' => '6a99179e9c90e9edfb34d075fa234d78',
+      'c4ca4238a0b923820dcc509a6f75849b' => 'c4ca4238a0b923820dcc509a6f75849b',
+      '799e8527bbd3d99e4c8c25a8a674d264' => 0,
+      'fce859fcce0e81943c3e31c20ccd68ff' => 0,
+      '0341fcc505281031474b68c72e03a997' => 0,
+      '94a098afb1689f950d72ed4c44f8655d' => 0,
+      '15faf15d7f591f8ef8e80238dd7c8b8c' => 0,
+      'c6db6d4ee28924020b504a5feb2bff9f' => 0,
+    ),
+  ));
+  $handler = $view->new_display('page', 'Page', 'page');
+  $handler->override_option('path', 'admin/content/node2');
+  $handler->override_option('menu', array(
+    'type' => 'none',
+    'title' => '',
+    'weight' => 0,
+  ));
+  $handler->override_option('tab_options', array(
+    'type' => 'none',
+    'title' => '',
+    'weight' => 0,
+  ));
+  
+  $views[$view->name] = $view;
+  return $views;
+}
+
