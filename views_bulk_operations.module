@@ -1,5 +1,4 @@
 <?php
-// $Id$
 
 define('VIEWS_BULK_OPS_STEP_VIEW', 1);
 define('VIEWS_BULK_OPS_STEP_CONFIG', 2);
